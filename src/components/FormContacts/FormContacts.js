@@ -1,9 +1,10 @@
-// import propTypes from 'prop-types';
+import propTypes from 'prop-types';
 import { useState } from 'react';
 import { Label, NameLabel, Button } from './FormContacts.styled';
 import { Formik, Form, Field } from 'formik';
 import styled from '@emotion/styled';
 import * as yup from 'yup';
+import { nanoid } from 'nanoid';
 
 const Conteiner = styled(Form)`
   display: flex;
@@ -26,7 +27,7 @@ const schema = yup.object().shape({
   number: yup.number().min(7).max(11).required(),
 });
 
-const FormContacts = ({ addUser }) => {
+export const FormContacts = ({ addUser }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -51,9 +52,10 @@ const FormContacts = ({ addUser }) => {
 
   const handleSudmit = event => {
     event.preventDefault();
-    addUser({ name, number });
+    addUser({ name, number, id: nanoid() });
     reset();
   };
+
   return (
     <Formik initialValues={{ name: '', number: '' }} validationSchema={schema}>
       <Conteiner onSubmit={handleSudmit}>
@@ -87,6 +89,7 @@ const FormContacts = ({ addUser }) => {
     </Formik>
   );
 };
+// export FormContacts
 // export class FormContacts extends Component {
 //   state = {
 //     name: '',
@@ -139,6 +142,6 @@ const FormContacts = ({ addUser }) => {
 //     );
 //   }
 // }
-// FormContacts.propTypes = {
-//   addUser: propTypes.func.isRequired,
-// };
+FormContacts.propTypes = {
+  addUser: propTypes.func.isRequired,
+};
