@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import { nanoid } from 'nanoid';
 import { Filter } from 'components/Filter/Filter';
 
 import { Container, NameH2 } from './App.styled';
@@ -24,14 +24,16 @@ export const App = () => {
   const getFilteredContacts = () => {
     return contacts.filter(it => it.name.toLowerCase().includes(filter));
   };
-
   const addUser = data => {
-    const newUser = contacts.some(
-      it => it.name.toLowerCase() === data.name.toLowerCase()
-    );
-    return newUser
-      ? alert(`${data.name} is alredy in contacts`)
-      : setContacts([...contacts, newUser]);
+    if (
+      contacts.some(it => it.name.toLowerCase() === data.name.toLowerCase())
+    ) {
+      alert(`${data.name} is alredy in contacts`);
+
+      return;
+    }
+    data.id = nanoid(4);
+    setContacts([...contacts, data]);
   };
 
   const deleteContact = id => {

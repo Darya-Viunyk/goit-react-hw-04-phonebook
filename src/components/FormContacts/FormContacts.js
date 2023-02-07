@@ -4,7 +4,6 @@ import { Label, NameLabel, Button } from './FormContacts.styled';
 import { Formik, Form, Field } from 'formik';
 import styled from '@emotion/styled';
 import * as yup from 'yup';
-import { nanoid } from 'nanoid';
 
 const Conteiner = styled(Form)`
   display: flex;
@@ -52,7 +51,7 @@ export const FormContacts = ({ addUser }) => {
 
   const handleSudmit = event => {
     event.preventDefault();
-    addUser({ name, number, id: nanoid() });
+    addUser({ name, number });
     reset();
   };
 
