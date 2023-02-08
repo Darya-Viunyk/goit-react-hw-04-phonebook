@@ -18,7 +18,8 @@ export const App = () => {
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
+    console.log('contacts useEffect');
+    window.localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
   const getFilteredContacts = () => {
@@ -37,11 +38,12 @@ export const App = () => {
   };
 
   const deleteContact = id => {
-    setContacts(prevState => ({
-      contacts: prevState.contacts.filter(user => user.id !== id),
-    }));
+    setContacts(prevState => prevState.filter(user => user.id !== id));
   };
 
+  // const deleteContact = id => {
+  //   setContacts(prev => prev.filter(it => it.id !== id));
+  // };
   return (
     <>
       <Container>
