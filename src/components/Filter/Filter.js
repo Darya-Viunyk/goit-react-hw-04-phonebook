@@ -1,6 +1,10 @@
 import propTypes from 'prop-types';
 import { ImpytStyle, TextSpan, FiltrBox } from './Filter.styles';
 export const Filter = ({ onChangeValue, value }) => {
+  // const onChange = e => {
+  //   const value = e.target.value.trim().toLowerCase();
+  //   onChangeValue(value);
+  // };
   return (
     <>
       <FiltrBox>

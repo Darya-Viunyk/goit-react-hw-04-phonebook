@@ -50,7 +50,7 @@ export const App = () => {
         <div>
           <NameH2>Contacts</NameH2>
           <Filter
-            onChangeValue={event => setFilter({ filter: event.target.value })}
+            onChangeValue={event => setFilter(event.currentTarget.value)}
             value={filter}
           />
           <Contacts
